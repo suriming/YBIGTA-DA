@@ -1,0 +1,45 @@
+1.
+
+SELECT O.country, count(distinct O.officeCode), count(E.employeeNumber)
+FROM classicmodels.offices O, classicmodels.employees E
+WHERE O.officeCode = E.officeCode
+group by 1; 
+
+2.
+과제의 customerFirstName을 contactFirstName으로 이해하고 풀었습니다. ﻿ ﻿
+SELECT customerName
+FROM classicmodels.customers
+WHERE contactFirstName like "R%”;
+
+
+
+3.
+SELECT count(orderNumber)
+FROM classicmodels.orders O, classicmodels.customers C
+WHERE
+(O.customerNumber=C.customerNumber) IN (SELECT customerNumber FROM classicmodels.customers WHERE country='USA') AND (O.status='Cancelled' OR 'On Hold’);
+
+4. 답이 안나오는데, 잘 모르겠습니다
+
+SELECT E.officeCode
+FROM classicmodels.customers C, classicmodels.employees E
+WHERE E.employeeNumber= C.salesRepEmployeeNumber
+GROUP BY E.officeCode
+HAVING COUNT(C.salesRepEmployeeNumber) = (SELECT max(cnt) FROM (SELECT count(customerNumber) as cnt FROM classicmodels.customers GROUP BY salesRepEmployeeNumber)as tmp);
+
+5. 답이 아닙니다
+SELECT *
+FROM classicmodels.customers C,(select extract(year from P.paymentDate)=2004) as P classicmodels.orderdetails D
+WHERE C.customerNumber = P.customerNumber
+GROUP BY C.customerNumber
+HAVING sum(P.amount) = (SELECT max(cnt) FROM (SELECT sum(amount) as cnt FROM classicmodels.payments GROUP BY customerNumber)as tmp); 
+
+6.
+
+
+7.답이 아닙니다ㅠㅜ
+SELECT C.salesRepEmployeeNumber
+FROM classicmodels.customers C, (select extract(year from P.paymentDate)=2004) as P
+WHERE C.customerNumber = P.customerNumber
+GROUP BY C.customerNumber
+HAVING sum(P.amount) = (SELECT max(cnt) FROM (SELECT sum(amount) as cnt FROM classicmodels.payments GROUP BY customerNumber)as tmp); 
