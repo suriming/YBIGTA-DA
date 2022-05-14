@@ -1,0 +1,47 @@
+body {
+  display: flex;
+  margin: 0;
+  /* background-image: url(heartbackground.png); */
+}
+.content {
+  display: table;
+  width: 30vw;
+  font-size: 1.5vh;
+  font-family: "NotoSansBold";
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./heartbackgroundV4.png");
+  background-size: 100% 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: auto;
+}
+.heart {
+  width: 120px;
+}
+
+.heart:active {
+  cursor: pointer;
+  width: 180px;
+}
+
+.header {
+  text-align: center;
+  font-size: 6.5vh;
+  font-family: "NotoSansBold";
+}
+
+.btn {
+  margin: auto;
+  display: flex;
+  background-color: white;
+  border: 0ch;
+}
+
+@font-face {
+  font-family: NotoSansBold;
+  src: url("./NotoSansKR-Bold.otf") format("opentype");
+}
